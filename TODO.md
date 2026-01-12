@@ -6,13 +6,13 @@
 - [x] Lire et stocker la carte en mémoire (get_next_line intégré)
 - [x] Vérifier que la carte est rectangulaire (`is_rectangle()`)
 - [x] Stocker la carte en structure de données (2D array/liste)
-- [ ] Vérifier que la carte est entourée de murs (caractère `1`)
-- [ ] Valider la présence des éléments obligatoires :
-  - [ ] Au moins 1 sortie (`E`)
-  - [ ] Au moins 1 position de départ (`P`)
-  - [ ] Au moins 1 collectible (`C`)
-- [ ] Vérifier qu'il y a exactement 1 joueur et 1 sortie
-- [ ] Vérifier que seuls les caractères valides sont présents (`0`, `1`, `C`, `E`, `P`)
+- [x] Vérifier que la carte est entourée de murs (caractère `1`) (`map_surrounded_by_wall()`)
+- [x] Valider la présence des éléments obligatoires :
+  - [x] Au moins 1 sortie (`E`)
+  - [x] Au moins 1 position de départ (`P`)
+  - [x] Au moins 1 collectible (`C`)
+- [x] Vérifier qu'il y a exactement 1 joueur et 1 sortie (`map_is_valid()`)
+- [x] Vérifier que seuls les caractères valides sont présents (`0`, `1`, `C`, `E`, `P`)
 - [ ] Implémenter une vérification de chemin valide (flood fill ou BFS/DFS)
   - [ ] Le joueur peut atteindre tous les collectibles
   - [ ] Le joueur peut atteindre la sortie

@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 {
 	char	*filename;
 	int		fd;
+	t_map	*map;
 
 	if (argc == 2)
 	{
@@ -34,6 +35,7 @@ int	main(int argc, char **argv)
 			return (ft_error("Error while opening the file"));
 		if (!is_rectangle(fd))
 			return (ft_error("Map is not rectangle"));
+		map = gen_map(filename);
 		close(fd);
 		return (0);
 	}

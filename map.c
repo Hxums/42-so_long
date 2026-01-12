@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:07 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/12 02:06:52 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:01:24 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ t_map	*gen_map(char *filename)
 		return (NULL);
 	map->height = 0;
 	map->width = 0;
+	map->collectible = 0;
 	set_map_size(filename, map);
 	if (map->height == 0 || map->width == 0)
 		return (failed_map(map));

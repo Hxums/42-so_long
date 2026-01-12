@@ -28,8 +28,10 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
+	int		collectible;
 }	t_map;
 
-int	filename_is_correct(char *str);
-int	is_rectangle(int fd);
+int		filename_is_correct(char *str);
+int		is_rectangle(int fd);
+t_map	*gen_map(char *filename);
 #endif
