@@ -5,7 +5,7 @@
 - [x] Vérifier l'extension `.ber` du fichier de carte (`filename_is_correct()`)
 - [x] Lire et stocker la carte en mémoire (get_next_line intégré)
 - [x] Vérifier que la carte est rectangulaire (`is_rectangle()`)
-- [ ] Stocker la carte en structure de données (2D array/liste)
+- [x] Stocker la carte en structure de données (2D array/liste)
 - [ ] Vérifier que la carte est entourée de murs (caractère `1`)
 - [ ] Valider la présence des éléments obligatoires :
   - [ ] Au moins 1 sortie (`E`)

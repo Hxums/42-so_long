@@ -17,9 +17,19 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-#include "get_next_line.h"
+# include "get_next_line.h"
 
 # ifndef EXTENSION
 #  define EXTENSION ".ber"
 # endif
+
+typedef struct s_map
+{
+	char	**grid;
+	int		width;
+	int		height;
+}	t_map;
+
+int	filename_is_correct(char *str);
+int	is_rectangle(int fd);
 #endif
