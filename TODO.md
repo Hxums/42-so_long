@@ -12,10 +12,10 @@
   - [x] Au moins 1 position de départ (`P`)
   - [x] Au moins 1 collectible (`C`)
 - [x] Vérifier qu'il y a exactement 1 joueur et 1 sortie (`map_is_valid()`)
-- [x] Vérifier que seuls les caractères valides sont présents (`0`, `1`, `C`, `E`, `P`)
-- [ ] Implémenter une vérification de chemin valide (flood fill ou BFS/DFS)
-  - [ ] Le joueur peut atteindre tous les collectibles
-  - [ ] Le joueur peut atteindre la sortie
+- [x] Vérifier que seuls les caractères valides sont présents (`0`, `1`, `C`, `E`, `P`) (`map_is_valid()`)
+- [x] Implémenter une vérification de chemin valide (flood fill) (`map_can_be_done()`)
+  - [x] Le joueur peut atteindre tous les collectibles
+  - [x] Le joueur peut atteindre la sortie
 
 ## 🎮 Gestion de la MiniLibX
 

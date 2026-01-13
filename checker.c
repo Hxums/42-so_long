@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:30 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/12 15:52:28 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/13 08:47:34 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,23 @@ int	map_is_valid(t_map *map)
 	return (start == 1 && exit == 1 && map->collectible > 0);
 }
 
-
-
 int	map_can_be_done(t_map *map)
 {
-	return (0);
+	char	**grid;
+	t_flood	count;
+	t_pos	player_pos;
+	int		collectible_count;
+	int		exit_count;
+
+	grid = ft_grid_cpy(map);
+	if (!grid)
+		return (0);
+	player_pos = get_player_pos(map);
+	count.collectibles_found = 0;
+	count.exit_found = 0;
+	flood_fill(grid, &count, map, player_pos);
+	exit_count = count.exit_found;
+	collectible_count = count.collectibles_found;
+	ft_strsfree(grid, map->height);
+	return (collectible_count == map->collectible && exit_count == 1);
 }
