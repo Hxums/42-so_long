@@ -7,6 +7,7 @@ SRC =	main.c \
 	flood_fill.c \
 	ft_grid_copy.c \
 	mlx_utils.c \
+	window.c \
 
 GNL =	getNextLine/get_next_line_utils.c\
 		getNextLine/get_next_line.c\

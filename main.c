@@ -18,56 +18,61 @@ int	ft_error(char *str)
 	return (0);
 }
 
+int	ft_check_file(char *filename)
+{
+	int	fd;
+
+	if (!filename_is_correct(filename))
+		return (ft_error("Filename not correct\n"));
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (ft_error("Error while opening the file\n"));
+	if (!is_rectangle(fd))
+	{
+		close(fd);
+		return (ft_error("Map is not rectangle\n"));
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
-	char	*filename;
-	int		fd;
 	t_vars	vars;
 	t_data	img;
-	int		i;
-	int		j;
 	t_map	*map;
 
 	if (argc == 2)
 	{
-		filename = argv[1];
-		if (!filename_is_correct(filename))
-			return (ft_error("Filename not correct\n"));
-		fd = open(filename, O_RDONLY);
-		if (fd == -1)
-			return (ft_error("Error while opening the file\n"));
-		if (!is_rectangle(fd))
-			return (ft_error("Map is not rectangle\n"));
-		map = gen_map(filename);
-		close(fd);
+		if (!ft_check_file(argv[1]))
+			return (0);
+		map = gen_map(argv[1]);
 		if (!map)
 			return (0);
-		vars.mlx = mlx_init();
-		if (!vars.mlx)
-			return (ft_error("Issue with mlx_init"));
-		vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-		if (!vars.win)
-			free(vars.mlx);
-		img.img = mlx_new_image(vars.mlx, TILE_SIZE * map->height,
-				TILE_SIZE * map->width);
-		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-				&img.line_length, &img.endian);
-		i = 0;
-		while (i < TILE_SIZE * (map->height))
+		if (!map_surrounded_by_wall(map))
 		{
-			j = 0;
-			while (j < TILE_SIZE * (map->width))
-			{
-				my_mlx_pixel_put(&img, j, i, 0x005800FF);
-				j++;
-			}
-			i++;
+			free(map);
+			return (ft_error("Map not surrounded by wall\n"));
+		}
+		if (!map_is_valid(map))
+		{
+			free(map);
+			return (ft_error("Map not valid\n"));
+		}
+		if (!map_can_be_done(map))
+		{
+			free(map);
+			return (ft_error("Map can't be completed\n"));
+		}
+		init_window(map, &vars, &img);
+		if (!vars.mlx)
+		{
+			free(map);
+			return (ft_error("Error while init window"));
 		}
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, 2, 1L << 0, key_press, &vars);
 		mlx_loop(vars.mlx);
 		free(vars.mlx);
 		free(vars.win);
-		free(map);
 	}
 }

@@ -6,16 +6,33 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 08:09:23 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/13 08:41:20 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/14 23:49:07 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+t_pos	get_next_pos(t_pos pos, int direction)
+{
+	t_pos	next;
+
+	next.height = pos.height;
+	next.width = pos.width;
+	if (direction == 1)
+		next.height++;
+	else if (direction == 2)
+		next.height--;
+	else if (direction == 3)
+		next.width++;
+	else
+		next.width--;
+	return (next);
+}
+
 void	flood_fill(char **grid, t_flood *count, t_map *map, t_pos pos)
 {
-	int	height;
-	int	width;
+	int		height;
+	int		width;
 
 	height = pos.height;
 	width = pos.width;
@@ -28,14 +45,10 @@ void	flood_fill(char **grid, t_flood *count, t_map *map, t_pos pos)
 			if (grid[height][width] == 'E')
 				count->exit_found++;
 			grid[height][width] = 'X';
-			pos.height = height - 1;
-			flood_fill(grid, count, map, pos);
-			pos.height = height + 1;
-			flood_fill(grid, count, map, pos);
-			pos.width = width - 1;
-			flood_fill(grid, count, map, pos);
-			pos.width = width + 1;
-			flood_fill(grid, count, map, pos);
+			flood_fill(grid, count, map,get_next_pos(pos, 1));
+			flood_fill(grid, count, map,get_next_pos(pos, 2));
+			flood_fill(grid, count, map,get_next_pos(pos, 3));
+			flood_fill(grid, count, map,get_next_pos(pos, 4));
 		}
 	}
 }

@@ -25,7 +25,7 @@
 # endif
 
 # ifndef TILE_SIZE
-#  define TILE_SIZE 96
+#  define TILE_SIZE 16
 # endif
 
 typedef struct s_map
@@ -63,13 +63,27 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
+enum e_tile_color
+{
+	COLOR_WALL		= 0x2E3440,
+	COLOR_FLOOR		= 0xECEFF4,
+	COLOR_PLAYER	= 0x5E81AC,
+	COLOR_EXIT		= 0xA3BE8C,
+	COLOR_COLLECT	= 0xEBCB8B,
+	COLOR_UNKNOWN	= 0xBF616A
+};
+
 int		filename_is_correct(char *str);
 int		is_rectangle(int fd);
 t_map	*gen_map(char *filename);
 void	ft_strsfree(char **strs, int i);
 char	**ft_grid_cpy(t_map *map);
+int		map_surrounded_by_wall(t_map *map);
+int		map_is_valid(t_map *map);
+int		map_can_be_done(t_map *map);
 t_pos	get_player_pos(t_map *map);
 void	flood_fill(char **grid, t_flood *count, t_map *map, t_pos pos);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		key_press(int keycode, t_vars *vars);
+void	init_window(t_map *map, t_vars *vars, t_data *img);
 #endif
