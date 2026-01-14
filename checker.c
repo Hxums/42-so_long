@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:30 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/13 08:47:34 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/14 02:15:06 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	filename_is_correct(char *str)
 {
 	int		size;
 	int		i;
-	t_map	map;
 
 	size = ft_strlen(str);
 	i = 0;
@@ -50,9 +49,9 @@ int	is_rectangle(int fd)
 		current_len = ft_strlen(line);
 		if (line[current_len - 1] == '\n')
 			current_len--;
+		free(line);
 		if (line_len != current_len)
 			return (0);
-		free(line);
 		line = get_next_line(fd);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 01:55:11 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/13 08:21:57 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/14 02:12:58 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ void	ft_strsfree(char **strs, int i)
 		free(strs[i]);
 	}
 	free(strs);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	char	*str;
-
-	i = ft_strlen(s);
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
 }
 
 t_pos	get_player_pos(t_map *map)
