@@ -19,8 +19,8 @@
 
 ## 🎮 Gestion de la MiniLibX
 
-- [ ] Initialiser la connexion MLX
-- [ ] Créer une fenêtre
+- [x] Initialiser la connexion MLX
+- [x] Créer une fenêtre (1920x1080)
 - [ ] Charger les textures/sprites nécessaires
 - [ ] Gérer la fermeture propre de la fenêtre (ESC et croix rouge)
 - [ ] Libérer correctement la mémoire MLX à la sortie
@@ -36,9 +36,10 @@
   - [ ] Sortie (fermée/ouverte optionnel)
 - [ ] Implémenter le rendu de la carte à l'écran
 - [ ] Afficher le compteur de mouvements
+- [x] Mettre en place le système de pixels (my_mlx_pixel_put)
 
 ## 🕹️ Gameplay
-
+x] Gérer les inputs clavier (hook en place
 - [ ] Gérer les inputs clavier (W/A/S/D ou flèches)
 - [ ] Implémenter le mouvement du joueur
   - [ ] Vérifier les collisions avec les murs
@@ -88,5 +89,6 @@
 - Teste régulièrement avec des cartes de différentes tailles
 - N'oublie pas la gestion de la mémoire !
 
----
+---2026-01-14
+**Statut:** MLX initialisée, fenêtre créée, flood fill validé. Prochaine étape: chargement de la carte et rendu graphique.
 **Dernière mise à jour:** En cours de développement

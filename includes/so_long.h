@@ -24,6 +24,10 @@
 #  define EXTENSION ".ber"
 # endif
 
+# ifndef TILE_SIZE
+#  define TILE_SIZE 96
+# endif
+
 typedef struct s_map
 {
 	char	**grid;

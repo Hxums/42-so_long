@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	t_data	img;
 	int		i;
 	int		j;
-	// t_map	*map;
+	t_map	*map;
 
 	if (argc == 2)
 	{
@@ -38,20 +38,25 @@ int	main(int argc, char **argv)
 			return (ft_error("Error while opening the file\n"));
 		if (!is_rectangle(fd))
 			return (ft_error("Map is not rectangle\n"));
-		// map = gen_map(filename);
+		map = gen_map(filename);
 		close(fd);
+		if (!map)
+			return (0);
 		vars.mlx = mlx_init();
 		if (!vars.mlx)
 			return (ft_error("Issue with mlx_init"));
 		vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-		img.img = mlx_new_image(vars.mlx, 1920, 1080);
+		if (!vars.win)
+			free(vars.mlx);
+		img.img = mlx_new_image(vars.mlx, TILE_SIZE * map->height,
+				TILE_SIZE * map->width);
 		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 				&img.line_length, &img.endian);
 		i = 0;
-		while (i < 1080)
+		while (i < TILE_SIZE * (map->height))
 		{
 			j = 0;
-			while (j < 1920 && i % 5 == 0)
+			while (j < TILE_SIZE * (map->width))
 			{
 				my_mlx_pixel_put(&img, j, i, 0x005800FF);
 				j++;
@@ -61,5 +66,8 @@ int	main(int argc, char **argv)
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, 2, 1L << 0, key_press, &vars);
 		mlx_loop(vars.mlx);
+		free(vars.mlx);
+		free(vars.win);
+		free(map);
 	}
 }
