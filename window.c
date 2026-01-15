@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/15 12:55:02 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:45:27 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	draw_map(t_map *map, t_vars *vars, t_data *img, int clear_to_redraw)
 			}
 		}
 	}
+	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 }
 
 void	init_window(t_map *map, t_vars *vars, t_data *img)

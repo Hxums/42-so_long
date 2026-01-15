@@ -36,7 +36,7 @@
   - [ ] Parcourir la map et afficher le bon sprite pour chaque case.
 - [ ] Gérer les hooks d'événements
   - [x] Fermer la fenêtre proprement (ESC et croix rouge) avec `mlx_hook()` et `mlx_destroy_window()`.
-  - [ ] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
+  - [x] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
 - [ ] Libérer correctement la mémoire MLX à la sortie
   - [x] Détruire la fenêtre avec `mlx_destroy_window()`.
   - [ ] Détruire chaque image chargée avec `mlx_destroy_image()`.

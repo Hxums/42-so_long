@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/15 12:58:58 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:48:04 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,28 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	move_player(t_game *game, int direction)
+{
+	t_pos	new_pos;
+
+	new_pos = game->player_pos;
+	if (direction == 1)
+		new_pos.width--;
+	else if (direction == 2)
+		new_pos.height--;
+	else if (direction == 3)
+		new_pos.width++;
+	else
+		new_pos.height++;
+	if (user_can_move(game->map, new_pos))
+	{
+		game->map->grid[game->player_pos.height][game->player_pos.width] = '0';
+		game->map->grid[new_pos.height][new_pos.width] = 'P';
+		game->player_pos = new_pos;
+		draw_map(game->map, &(game->vars), &(game->img), 1);
+	}
+}
+
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
@@ -27,14 +49,11 @@ int	key_press(int keycode, t_game *game)
 		mlx_destroy_window(game->vars.mlx, game->vars.win);
 		exit(0);
 	}
-	if (keycode == 65362)
-		printf("arrow up\n");
-	if (keycode == 65364)
-		printf("arrow down\n");
-	if (keycode == 65361)
-		printf("arrow left\n");
-	if (keycode == 65363)
-		printf("arrow right\n");
+	if (65361 <= keycode && keycode <= 65364)
+	{
+		// printf("arrow %d\n", keycode - 65360);
+		move_player(game, keycode - 65360);
+	}
 	else
 		printf("keycode is %d\n", keycode);
 	return (0);

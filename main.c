@@ -57,11 +57,19 @@ int	check_map(t_map *map)
 	return (1);
 }
 
-void	init_game_struct(t_game *game, t_vars vars, t_map *map, t_pos pos)
+t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos, t_data img)
 {
+	t_game	*game;
+
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (NULL);
 	game->vars = vars;
 	game->map = map;
 	game->player_pos = pos;
+	game->img = img;
+
+	return (game);
 }
 
 int	main(int argc, char **argv)
@@ -84,9 +92,9 @@ int	main(int argc, char **argv)
 			free(map);
 			return (ft_error("Error while init window"));
 		}
-		game = malloc(sizeof(game));
-		init_game_struct(game, vars, map, get_player_pos(map));
-		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+		game = init_game_struct(vars, map, get_player_pos(map), img);
+		if (!game)
+			return (ft_error("Error while init game\n"));
 		mlx_hook(vars.win, 2, 1L << 0, key_press, game);
 		mlx_loop(vars.mlx);
 	}
