@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/14 22:54:27 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/15 12:58:58 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	key_press(int keycode, t_vars *vars)
+int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_window(game->vars.mlx, game->vars.win);
 		exit(0);
 	}
 	if (keycode == 65362)

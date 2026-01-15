@@ -35,44 +35,59 @@ int	ft_check_file(char *filename)
 	return (1);
 }
 
+int	check_map(t_map *map)
+{
+	if (!map)
+		return (ft_error("Map cannot be created (malloc issue)\n"));
+	if (!map_surrounded_by_wall(map))
+	{
+		free(map);
+		return (ft_error("Map not surrounded by wall\n"));
+	}
+	if (!map_is_valid(map))
+	{
+		free(map);
+		return (ft_error("Map not valid\n"));
+	}
+	if (!map_can_be_done(map))
+	{
+		free(map);
+		return (ft_error("Map can't be completed\n"));
+	}
+	return (1);
+}
+
+void	init_game_struct(t_game *game, t_vars vars, t_map *map, t_pos pos)
+{
+	game->vars = vars;
+	game->map = map;
+	game->player_pos = pos;
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
 	t_data	img;
 	t_map	*map;
+	t_game	*game;
 
 	if (argc == 2)
 	{
 		if (!ft_check_file(argv[1]))
 			return (0);
 		map = gen_map(argv[1]);
-		if (!map)
+		if (!check_map(map))
 			return (0);
-		if (!map_surrounded_by_wall(map))
-		{
-			free(map);
-			return (ft_error("Map not surrounded by wall\n"));
-		}
-		if (!map_is_valid(map))
-		{
-			free(map);
-			return (ft_error("Map not valid\n"));
-		}
-		if (!map_can_be_done(map))
-		{
-			free(map);
-			return (ft_error("Map can't be completed\n"));
-		}
 		init_window(map, &vars, &img);
 		if (!vars.mlx)
 		{
 			free(map);
 			return (ft_error("Error while init window"));
 		}
+		game = malloc(sizeof(game));
+		init_game_struct(game, vars, map, get_player_pos(map));
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-		mlx_hook(vars.win, 2, 1L << 0, key_press, &vars);
+		mlx_hook(vars.win, 2, 1L << 0, key_press, game);
 		mlx_loop(vars.mlx);
-		free(vars.mlx);
-		free(vars.win);
 	}
 }

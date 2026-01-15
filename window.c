@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/14 23:54:34 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/15 12:55:02 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int	get_tile_color(char c)
 {
 	if (c == '1')
-		return (COLOR_WALL);
-	else if (c == '1')
 		return (COLOR_WALL);
 	else if (c == '0')
 		return (COLOR_FLOOR);
@@ -30,14 +28,37 @@ int	get_tile_color(char c)
 		return (COLOR_UNKNOWN);
 }
 
+void	draw_map(t_map *map, t_vars *vars, t_data *img, int clear_to_redraw)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+
+	if (clear_to_redraw)
+		mlx_clear_window(vars->mlx, vars->win);
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			k = -1;
+			while (++k < TILE_SIZE)
+			{
+				l = -1;
+				while (++l < TILE_SIZE)
+				{
+					my_mlx_pixel_put(img, j * TILE_SIZE + l,
+						i * TILE_SIZE + k, get_tile_color(map->grid[i][j]));
+				}
+			}
+		}
+	}
+}
+
 void	init_window(t_map *map, t_vars *vars, t_data *img)
 {
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-	int		color;
-
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		return ;
@@ -52,27 +73,5 @@ void	init_window(t_map *map, t_vars *vars, t_data *img)
 			TILE_SIZE * map->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			color = get_tile_color(map->grid[y][x]);
-			i = 0;
-			while (i < TILE_SIZE)
-			{
-				j = 0;
-				while (j < TILE_SIZE)
-				{
-					my_mlx_pixel_put(img, x * TILE_SIZE + j,
-						y * TILE_SIZE + i, color);
-					j++;
-				}
-				i++;
-			}
-			x++;
-		}
-		y++;
-	}
+	draw_map(map, vars, img, 0);
 }
