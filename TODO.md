@@ -117,6 +117,52 @@
 - Teste régulièrement avec des cartes de différentes tailles
 - N'oublie pas la gestion de la mémoire !
 
----2026-01-14
-**Statut:** MLX initialisée, fenêtre créée, flood fill validé. Fermeture propre et libération mémoire MLX OK. Prochaine étape: chargement de la carte et rendu graphique.
-**Dernière mise à jour:** 2026-01-14
+## 🚀 Prochaines étapes prioritaires
+
+- [ ] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
+- [ ] Créer une structure `t_sprites` pour centraliser les pointeurs d'images
+- [ ] Charger chaque sprite avec `mlx_xpm_file_to_image()` et vérifier les erreurs
+- [ ] Implémenter le rendu de la carte :
+  - [ ] Parcourir la map et afficher le bon sprite pour chaque case
+  - [ ] Définir la taille des tiles/sprites (ex : 32x32 px)
+  - [ ] Adapter la taille de la fenêtre à la carte
+- [ ] Gérer les déplacements du joueur :
+  - [ ] Supporter W/A/S/D et flèches
+  - [ ] Vérifier collisions (murs, collectibles, sortie)
+  - [ ] Mettre à jour la map et le compteur de mouvements
+- [ ] Afficher le compteur de mouvements à l'écran (bonus)
+- [ ] Gérer la collecte des items et la condition de victoire
+- [ ] Détruire chaque image chargée avec `mlx_destroy_image()` à la fermeture
+- [ ] Vérifier la norme (norminette) et l'absence de fuites mémoire (valgrind)
+
+## 🧑‍💻 Conseils pratiques
+
+- Centraliser tous les pointeurs MLX (fenêtre, images, etc.) dans une structure principale (`t_game`)
+- Toujours vérifier le retour des fonctions MLX (NULL = erreur)
+- Libérer chaque ressource MLX pour éviter les fuites mémoire
+- Modulariser le code : séparer parsing, rendu, gameplay, gestion mémoire
+- Tester avec des cartes de tailles et formes variées
+- Utiliser des messages d'erreur explicites et une sortie propre
+
+## 🎨 Idées d'amélioration graphique
+
+- Ajouter plusieurs textures pour le joueur selon la direction
+- Créer une animation simple pour les collectibles ou la sortie
+- Afficher le compteur de mouvements dans la fenêtre (bonus)
+- Adapter le rendu pour les grandes cartes (scrolling ou centrage)
+
+## 🏆 Bonus et extensions
+
+- Ajouter des ennemis patrouilleurs (perte si contact)
+- Gérer plusieurs niveaux/cartes
+- Système de menu de démarrage et écran de victoire/défaite
+- Effets sonores (si temps et envie)
+
+## 🧹 Nettoyage et validation finale
+
+- Vérifier la norme (norminette)
+- Tester avec valgrind (aucune fuite mémoire)
+- Vérifier le Makefile (règles all, clean, fclean, re, pas de relink)
+- Tester avec des cartes valides et invalides (collectibles inaccessibles, murs manquants, etc.)
+
+---

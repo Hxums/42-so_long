@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/15 14:48:04 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/17 01:56:18 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ void	move_player(t_game *game, int direction)
 	}
 }
 
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->vars.mlx, game->vars.win);
+	exit(0);
+	return (0);
+}
+
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 	{
-		mlx_destroy_window(game->vars.mlx, game->vars.win);
-		exit(0);
+		close_window(game);
 	}
 	if (65361 <= keycode && keycode <= 65364)
 	{

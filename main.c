@@ -95,7 +95,8 @@ int	main(int argc, char **argv)
 		game = init_game_struct(vars, map, get_player_pos(map), img);
 		if (!game)
 			return (ft_error("Error while init game\n"));
-		mlx_hook(vars.win, 2, 1L << 0, key_press, game);
+		mlx_hook(vars.win, 2, 1L, key_press, game);
+		mlx_hook(vars.win, 17, 0, close_window, game);
 		mlx_loop(vars.mlx);
 	}
 }

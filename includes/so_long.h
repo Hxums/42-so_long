@@ -96,4 +96,5 @@ int		key_press(int keycode, t_game *game);
 void	init_window(t_map *map, t_vars *vars, t_data *img);
 int		user_can_move(t_map *map, t_pos new_pos);
 void	draw_map(t_map *map, t_vars *vars, t_data *img, int clear_to_redraw);
+int		close_window(t_game *game);
 #endif
