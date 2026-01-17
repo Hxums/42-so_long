@@ -68,7 +68,7 @@ t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos, t_data img)
 	game->map = map;
 	game->player_pos = pos;
 	game->img = img;
-
+	game->move_number = 0;
 	return (game);
 }
 

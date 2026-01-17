@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/15 14:45:27 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:05:49 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ int	get_tile_color(char c)
 		return (COLOR_UNKNOWN);
 }
 
-void	draw_map(t_map *map, t_vars *vars, t_data *img, int clear_to_redraw)
+void	draw_map(t_map *map, t_vars *vars, t_data *img)
 {
 	int	i;
 	int	j;
 	int	k;
 	int	l;
 
-	if (clear_to_redraw)
-		mlx_clear_window(vars->mlx, vars->win);
+	mlx_clear_window(vars->mlx, vars->win);
 	i = -1;
 	while (++i < map->height)
 	{
@@ -74,5 +73,5 @@ void	init_window(t_map *map, t_vars *vars, t_data *img)
 			TILE_SIZE * map->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	draw_map(map, vars, img, 0);
+	draw_map(map, vars, img);
 }

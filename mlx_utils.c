@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/17 01:56:18 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:47:20 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	move_player(t_game *game, int direction)
 		game->map->grid[game->player_pos.height][game->player_pos.width] = '0';
 		game->map->grid[new_pos.height][new_pos.width] = 'P';
 		game->player_pos = new_pos;
-		draw_map(game->map, &(game->vars), &(game->img), 1);
+		draw_map(game->map, &(game->vars), &(game->img));
+		game->move_number++;
+		printf("move number : %d\n", game->move_number);
 	}
 }
 
@@ -52,15 +54,8 @@ int	close_window(t_game *game)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
-	{
 		close_window(game);
-	}
-	if (65361 <= keycode && keycode <= 65364)
-	{
-		// printf("arrow %d\n", keycode - 65360);
+	if (119 <= keycode && keycode <= 65364)
 		move_player(game, keycode - 65360);
-	}
-	else
-		printf("keycode is %d\n", keycode);
 	return (0);
 }

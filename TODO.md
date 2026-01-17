@@ -27,23 +27,23 @@
   - Utiliser `mlx_init()` pour obtenir un pointeur de connexion.
 - [x] Créer une fenêtre (ex: 1920x1080)
   - `mlx_new_window()` pour créer la fenêtre principale.
-- [ ] Charger les textures/sprites nécessaires
-  - [ ] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
-  - [ ] Utiliser `mlx_xpm_file_to_image()` pour charger chaque image et récupérer un pointeur d'image.
-  - [ ] Stocker les pointeurs d'images dans une structure dédiée (ex: `t_sprites`).
-- [ ] Afficher les images à l'écran
-  - [ ] Utiliser `mlx_put_image_to_window()` pour dessiner chaque sprite à la bonne position selon la carte.
-  - [ ] Parcourir la map et afficher le bon sprite pour chaque case.
-- [ ] Gérer les hooks d'événements
-  - [x] Fermer la fenêtre proprement (ESC et croix rouge) avec `mlx_hook()` et `mlx_destroy_window()`.
-  - [x] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
-- [ ] Libérer correctement la mémoire MLX à la sortie
-  - [x] Détruire la fenêtre avec `mlx_destroy_window()`.
-  - [ ] Détruire chaque image chargée avec `mlx_destroy_image()`.
-  - [ ] Libérer la connexion MLX si nécessaire.
-- [ ] Gérer les erreurs MLX
-  - [ ] Vérifier le retour de chaque fonction MLX (pointeur NULL = erreur).
-  - [ ] Afficher un message d'erreur explicite et quitter proprement si une étape échoue.
+  - [ ] Charger les textures/sprites nécessaires
+    - [ ] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
+    - [ ] Utiliser `mlx_xpm_file_to_image()` pour charger chaque image et récupérer un pointeur d'image.
+    - [ ] Stocker les pointeurs d'images dans une structure dédiée (ex: `t_sprites`).
+  - [ ] Afficher les images à l'écran
+    - [ ] Utiliser `mlx_put_image_to_window()` pour dessiner chaque sprite à la bonne position selon la carte.
+    - [ ] Parcourir la map et afficher le bon sprite pour chaque case.
+  - [x] Gérer les hooks d'événements
+    - [x] Fermer la fenêtre proprement (ESC et croix rouge) avec `mlx_hook()` et `mlx_destroy_window()`.
+    - [x] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
+  - [ ] Libérer correctement la mémoire MLX à la sortie
+    - [x] Détruire la fenêtre avec `mlx_destroy_window()`.
+    - [ ] Détruire chaque image chargée avec `mlx_destroy_image()`.
+    - [ ] Libérer la connexion MLX si nécessaire.
+  - [ ] Gérer les erreurs MLX
+    - [ ] Vérifier le retour de chaque fonction MLX (pointeur NULL = erreur).
+    - [ ] Afficher un message d'erreur explicite et quitter proprement si une étape échoue.
 
 **Conseils pratiques MLX :**
 - Les images doivent être au format XPM (support natif MLX).
