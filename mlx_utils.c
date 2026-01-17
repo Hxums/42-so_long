@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/17 17:47:20 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/17 22:10:43 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ void	move_player(t_game *game, int direction)
 
 int	close_window(t_game *game)
 {
+	mlx_destroy_image(game->vars.mlx, game->img.img);
 	mlx_destroy_window(game->vars.mlx, game->vars.win);
+	mlx_destroy_display(game->vars.mlx);
+	free_map_grid(game->map, game->map->height - 1);
+	free(game->map);
+	free(game->vars.mlx);
+	free(game);
 	exit(0);
 	return (0);
 }

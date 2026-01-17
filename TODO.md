@@ -37,13 +37,13 @@
   - [x] Gérer les hooks d'événements
     - [x] Fermer la fenêtre proprement (ESC et croix rouge) avec `mlx_hook()` et `mlx_destroy_window()`.
     - [x] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
-  - [ ] Libérer correctement la mémoire MLX à la sortie
+  - [x] Libérer correctement la mémoire MLX à la sortie
     - [x] Détruire la fenêtre avec `mlx_destroy_window()`.
-    - [ ] Détruire chaque image chargée avec `mlx_destroy_image()`.
-    - [ ] Libérer la connexion MLX si nécessaire.
+    - [x] Détruire chaque image chargée avec `mlx_destroy_image()` (image principale OK)
+    - [x] Libérer la connexion MLX (free et destroy_display)
   - [ ] Gérer les erreurs MLX
-    - [ ] Vérifier le retour de chaque fonction MLX (pointeur NULL = erreur).
-    - [ ] Afficher un message d'erreur explicite et quitter proprement si une étape échoue.
+    - [x] Vérifier le retour de chaque fonction MLX (pointeur NULL = erreur).
+    - [x] Afficher un message d'erreur explicite et quitter proprement si une étape échoue.
 
 **Conseils pratiques MLX :**
 - Les images doivent être au format XPM (support natif MLX).
@@ -53,27 +53,28 @@
 
 ## 🖼️ Affichage graphique
 
-- [ ] Définir la taille des tiles/sprites
-- [ ] Créer ou récupérer les sprites pour :
+- [x] Définir la taille des tiles/sprites (TILE_SIZE dans le code)
+- [x] Créer un affichage basique couleur pour chaque type (pas encore de sprites XPM)
+- [ ] Créer ou récupérer les sprites XPM pour :
   - [ ] Mur
   - [ ] Sol
   - [ ] Collectible
   - [ ] Joueur (possiblement plusieurs directions)
   - [ ] Sortie (fermée/ouverte optionnel)
-- [ ] Implémenter le rendu de la carte à l'écran (prochaine étape)
-- [ ] Afficher le compteur de mouvements
+- [x] Implémenter le rendu de la carte à l'écran (draw_map OK)
+- [ ] Afficher le compteur de mouvements à l'écran
 - [x] Mettre en place le système de pixels (my_mlx_pixel_put)
 
 ## 🕹️ Gameplay
 - [x] Gérer les inputs clavier (hook en place)
-- [ ] Supporter W/A/S/D ou flèches
-- [ ] Implémenter le mouvement du joueur
-  - [ ] Vérifier les collisions avec les murs
-  - [ ] Incrémenter et afficher le compteur de mouvements
-  - [ ] Afficher le nombre de mouvements dans le terminal
+- [x] Supporter les flèches (déjà géré, W/A/S/D à ajouter)
+- [x] Implémenter le mouvement du joueur (move_player)
+  - [x] Vérifier les collisions avec les murs
+  - [x] Incrémenter et afficher le compteur de mouvements (printf OK)
+  - [x] Afficher le nombre de mouvements dans le terminal
 - [ ] Gérer la collecte des items
-  - [ ] Retirer le collectible de la carte
-  - [ ] Mettre à jour le compteur de collectibles
+  - [x] Retirer le collectible de la carte (user_can_move décrémente collectible)
+  - [x] Mettre à jour le compteur de collectibles
 - [ ] Gérer la condition de victoire
   - [ ] Tous les collectibles sont ramassés
   - [ ] Le joueur atteint la sortie
@@ -94,13 +95,13 @@
 ## 🧹 Nettoyage et normes
 
 - [ ] Vérifier la Norme (norminette)
-- [ ] S'assurer qu'il n'y a pas de fuites mémoire (valgrind)
-- [ ] Créer/Vérifier le Makefile avec les règles :
-  - [ ] `all`
-  - [ ] `clean`
-  - [ ] `fclean`
-  - [ ] `re`
-  - [ ] Pas de relink
+- [x] S'assurer qu'il n'y a pas de fuites mémoire (valgrind OK)
+- [x] Créer/Vérifier le Makefile avec les règles :
+  - [x] `all`
+  - [x] `clean`
+  - [x] `fclean`
+  - [x] `re`
+  - [x] Pas de relink
 - [x] Tester avec différentes cartes valides et invalides (dont collectibles inaccessibles)
 
 ## 🎁 Bonus (optionnel)

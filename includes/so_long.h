@@ -87,6 +87,7 @@ int		is_rectangle(int fd);
 t_map	*gen_map(char *filename);
 void	ft_strsfree(char **strs, int i);
 char	**ft_grid_cpy(t_map *map);
+void	free_map_grid(t_map *map, int i);
 int		map_surrounded_by_wall(t_map *map);
 int		map_is_valid(t_map *map);
 int		map_can_be_done(t_map *map);

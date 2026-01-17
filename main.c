@@ -41,17 +41,17 @@ int	check_map(t_map *map)
 		return (ft_error("Map cannot be created (malloc issue)\n"));
 	if (!map_surrounded_by_wall(map))
 	{
-		free(map);
+		free_map_grid(map, map->height - 1);
 		return (ft_error("Map not surrounded by wall\n"));
 	}
 	if (!map_is_valid(map))
 	{
-		free(map);
+		free_map_grid(map, map->height - 1);
 		return (ft_error("Map not valid\n"));
 	}
 	if (!map_can_be_done(map))
 	{
-		free(map);
+		free_map_grid(map, map->height - 1);
 		return (ft_error("Map can't be completed\n"));
 	}
 	return (1);
@@ -89,12 +89,15 @@ int	main(int argc, char **argv)
 		init_window(map, &vars, &img);
 		if (!vars.mlx)
 		{
-			free(map);
+			free_map_grid(map, map->height - 1);
 			return (ft_error("Error while init window"));
 		}
 		game = init_game_struct(vars, map, get_player_pos(map), img);
 		if (!game)
+		{
+			free_map_grid(map, map->height - 1);
 			return (ft_error("Error while init game\n"));
+		}
 		mlx_hook(vars.win, 2, 1L, key_press, game);
 		mlx_hook(vars.win, 17, 0, close_window, game);
 		mlx_loop(vars.mlx);
