@@ -57,15 +57,14 @@ int	check_map(t_map *map)
 	return (1);
 }
 
-// Suppression du champ img
-t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos)
+t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos)
 {
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	game->vars = vars;
+	game->vars = *vars;
 	game->map = map;
 	game->player_pos = pos;
 	game->move_number = 0;
@@ -85,7 +84,7 @@ int	main(int argc, char **argv)
 		map = gen_map(argv[1]);
 		if (!check_map(map))
 			return (0);
-		game = init_game_struct(vars, map, get_player_pos(map));
+		game = init_game_struct(&vars, map, get_player_pos(map));
 		if (!game)
 		{
 			free_map_grid(map, map->height - 1);
