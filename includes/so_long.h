@@ -42,15 +42,6 @@ typedef struct s_pos
 	int	width;
 }	t_pos;
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
 typedef struct s_flood
 {
 	int	collectibles_found;
@@ -73,13 +64,22 @@ enum e_tile_color
 	COLOR_UNKNOWN	= 0xBF616A
 };
 
+typedef struct s_sprites
+{
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+}	t_sprites;
+
 typedef struct s_game
 {
-	t_vars	vars;
-	t_map	*map;
-	t_pos	player_pos;
-	t_data	img;
-	int		move_number;
+	t_vars		vars;
+	t_map		*map;
+	t_pos		player_pos;
+	t_sprites	sprites;
+	int			move_number;
 }	t_game;
 
 int		filename_is_correct(char *str);
@@ -93,10 +93,11 @@ int		map_is_valid(t_map *map);
 int		map_can_be_done(t_map *map);
 t_pos	get_player_pos(t_map *map);
 void	flood_fill(char **grid, t_flood *count, t_map *map, t_pos pos);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		key_press(int keycode, t_game *game);
-void	init_window(t_map *map, t_vars *vars, t_data *img);
+void	init_window(t_game *game);
 int		user_can_move(t_map *map, t_pos new_pos);
-void	draw_map(t_map *map, t_vars *vars, t_data *img);
+void	draw_map(t_game *game);
+void	draw_player(t_game *game);
 int		close_window(t_game *game);
+void	load_sprites(void *mlx, t_sprites *sprites);
 #endif

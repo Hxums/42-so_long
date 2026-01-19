@@ -57,7 +57,8 @@ int	check_map(t_map *map)
 	return (1);
 }
 
-t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos, t_data img)
+// Suppression du champ img
+t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos)
 {
 	t_game	*game;
 
@@ -67,7 +68,6 @@ t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos, t_data img)
 	game->vars = vars;
 	game->map = map;
 	game->player_pos = pos;
-	game->img = img;
 	game->move_number = 0;
 	return (game);
 }
@@ -75,7 +75,6 @@ t_game	*init_game_struct(t_vars vars, t_map *map, t_pos pos, t_data img)
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	t_data	img;
 	t_map	*map;
 	t_game	*game;
 
@@ -86,20 +85,24 @@ int	main(int argc, char **argv)
 		map = gen_map(argv[1]);
 		if (!check_map(map))
 			return (0);
-		init_window(map, &vars, &img);
-		if (!vars.mlx)
-		{
-			free_map_grid(map, map->height - 1);
-			return (ft_error("Error while init window"));
-		}
-		game = init_game_struct(vars, map, get_player_pos(map), img);
+		game = init_game_struct(vars, map, get_player_pos(map));
 		if (!game)
 		{
 			free_map_grid(map, map->height - 1);
 			return (ft_error("Error while init game\n"));
 		}
-		mlx_hook(vars.win, 2, 1L, key_press, game);
-		mlx_hook(vars.win, 17, 0, close_window, game);
-		mlx_loop(vars.mlx);
+		init_window(game);
+		if (!game->vars.mlx)
+		{
+			free_map_grid(map, map->height - 1);
+			free(game);
+			return (ft_error("Error while init window"));
+		}
+		load_sprites(game->vars.mlx, &game->sprites);
+		draw_map(game);
+		draw_player(game);
+		mlx_hook(game->vars.win, 2, 1L, key_press, game);
+		mlx_hook(game->vars.win, 17, 0, close_window, game);
+		mlx_loop(game->vars.mlx);
 	}
 }

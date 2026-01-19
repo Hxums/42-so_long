@@ -6,19 +6,11 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/17 22:10:43 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/19 02:18:38 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	move_player(t_game *game, int direction)
 {
@@ -38,7 +30,8 @@ void	move_player(t_game *game, int direction)
 		game->map->grid[game->player_pos.height][game->player_pos.width] = '0';
 		game->map->grid[new_pos.height][new_pos.width] = 'P';
 		game->player_pos = new_pos;
-		draw_map(game->map, &(game->vars), &(game->img));
+		draw_map(game);
+		draw_player(game);
 		game->move_number++;
 		printf("move number : %d\n", game->move_number);
 	}
@@ -46,7 +39,16 @@ void	move_player(t_game *game, int direction)
 
 int	close_window(t_game *game)
 {
-	mlx_destroy_image(game->vars.mlx, game->img.img);
+	if (game->sprites.collectible)
+		mlx_destroy_image(game->vars.mlx, game->sprites.collectible);
+	if (game->sprites.exit)
+		mlx_destroy_image(game->vars.mlx, game->sprites.exit);
+	if (game->sprites.floor)
+		mlx_destroy_image(game->vars.mlx, game->sprites.floor);
+	if (game->sprites.player)
+		mlx_destroy_image(game->vars.mlx, game->sprites.player);
+	if (game->sprites.wall)
+		mlx_destroy_image(game->vars.mlx, game->sprites.wall);
 	mlx_destroy_window(game->vars.mlx, game->vars.win);
 	mlx_destroy_display(game->vars.mlx);
 	free_map_grid(game->map, game->map->height - 1);
@@ -54,7 +56,6 @@ int	close_window(t_game *game)
 	free(game->vars.mlx);
 	free(game);
 	exit(0);
-	return (0);
 }
 
 int	key_press(int keycode, t_game *game)

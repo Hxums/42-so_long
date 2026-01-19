@@ -6,72 +6,70 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/17 21:05:49 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/19 02:01:21 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_tile_color(char c)
+void	*get_sprite(t_game *game, char c)
 {
 	if (c == '1')
-		return (COLOR_WALL);
+		return (game->sprites.wall);
 	else if (c == '0')
-		return (COLOR_FLOOR);
+		return (game->sprites.floor);
 	else if (c == 'P')
-		return (COLOR_PLAYER);
-	else if (c == 'E')
-		return (COLOR_EXIT);
+		return (game->sprites.player);
 	else if (c == 'C')
-		return (COLOR_COLLECT);
+		return (game->sprites.collectible);
+	else if (c == 'E')
+		return (game->sprites.exit);
 	else
-		return (COLOR_UNKNOWN);
+		return (NULL);
 }
 
-void	draw_map(t_map *map, t_vars *vars, t_data *img)
+void	draw_map(t_game *game)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	l;
+	int		i;
+	int		j;
+	void	*img;
 
-	mlx_clear_window(vars->mlx, vars->win);
+	mlx_clear_window(game->vars.mlx, game->vars.win);
 	i = -1;
-	while (++i < map->height)
+	while (++i < game->map->height)
 	{
 		j = -1;
-		while (++j < map->width)
+		while (++j < game->map->width)
 		{
-			k = -1;
-			while (++k < TILE_SIZE)
-			{
-				l = -1;
-				while (++l < TILE_SIZE)
-				{
-					my_mlx_pixel_put(img, j * TILE_SIZE + l,
-						i * TILE_SIZE + k, get_tile_color(map->grid[i][j]));
-				}
-			}
+			if (game->map->grid[i][j] == 'P')
+				img = game->sprites.floor;
+			else
+				img = get_sprite(game, game->map->grid[i][j]);
+			mlx_put_image_to_window(game->vars.mlx, game->vars.win, img,
+				j * TILE_SIZE, i * TILE_SIZE);
 		}
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 }
 
-void	init_window(t_map *map, t_vars *vars, t_data *img)
+void	draw_player(t_game *game)
 {
-	vars->mlx = mlx_init();
-	if (!vars->mlx)
+	mlx_put_image_to_window(game->vars.mlx, game->vars.win,
+		game->sprites.player,
+		game->player_pos.width * TILE_SIZE,
+		game->player_pos.height * TILE_SIZE);
+}
+
+void	init_window(t_game *game)
+{
+	game->vars.mlx = mlx_init();
+	if (!game->vars.mlx)
 		return ;
-	vars->win = mlx_new_window(vars->mlx, TILE_SIZE * map->width,
-			TILE_SIZE * map->height, "hcissoko so_long");
-	if (!vars->win)
+	game->vars.win = mlx_new_window(game->vars.mlx,
+			TILE_SIZE * game->map->width,
+			TILE_SIZE * game->map->height, "hcissoko so_long");
+	if (!game->vars.win)
 	{
-		free(vars->mlx);
+		free(game->vars.mlx);
 		return ;
 	}
-	img->img = mlx_new_image(vars->mlx, TILE_SIZE * map->width,
-			TILE_SIZE * map->height);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
-	draw_map(map, vars, img);
 }
