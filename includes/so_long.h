@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include "mlx.h"
 
 # ifndef EXTENSION
@@ -84,6 +85,7 @@ typedef struct s_game
 
 int		filename_is_correct(char *str);
 int		is_rectangle(int fd);
+char	*ft_itoa(int n);
 t_map	*gen_map(char *filename);
 void	ft_strsfree(char **strs, int i);
 char	**ft_grid_cpy(t_map *map);
@@ -100,4 +102,11 @@ void	draw_map(t_game *game);
 void	draw_player(t_game *game);
 int		close_window(t_game *game);
 void	load_sprites(void *mlx, t_sprites *sprites);
+t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos);
+void	launch_game(t_game *game, t_map *map);
+int		ft_putnbr(long nb);
+t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos);
+int		ft_error(char *str);
+void	launch_game(t_game *game, t_map *map);
+void	show_movements(t_game *game);
 #endif

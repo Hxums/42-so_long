@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:29:47 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/19 02:08:42 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/19 20:08:05 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	load_sprites(void *mlx, t_sprites *sprites)
 	sprites->player = mlx_xpm_file_to_image(mlx, "sprites/player.xpm", &w, &h);
 	sprites->collectible = mlx_xpm_file_to_image(mlx, "sprites/collectible.xpm",
 			&w, &h);
-	sprites->exit = mlx_xpm_file_to_image(mlx, "sprites/closed_exit.xpm",
+	sprites->exit = mlx_xpm_file_to_image(mlx, "sprites/exit.xpm",
 			&w, &h);
 }

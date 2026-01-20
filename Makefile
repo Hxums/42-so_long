@@ -10,6 +10,9 @@ SRC =	main.c \
 	window.c \
 	player.c \
 	sprites.c \
+	ft_itoa.c \
+	ft_putnbr.c \
+	game.c \
 
 GNL =	getNextLine/get_next_line_utils.c\
 		getNextLine/get_next_line.c\
@@ -19,22 +22,29 @@ OBJS = ${SRC:.c=.o} ${GNL:.c=.o}
 CC      = cc
 RM      = rm -f
 CFLAGS  = -Wall -Wextra -Werror
-INCS	= -I ./includes/ -I ./minilibx-linux/
+INCS	= -I ./includes/ -I ./minilibx-linux/ -I ./printf
 
 MLX_DIR	= ./minilibx-linux
 MLX_LIB	= ${MLX_DIR}/libmlx.a
 MLX_LDFLAGS = -L${MLX_DIR} -lmlx -lXext -lX11 -lm -lz
+
+PRINTF_DIR = ./printf
+PRINTF_LIB = ${PRINTF_DIR}/libftprintf.a
+
 
 all: ${NAME}
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o $@ ${INCS}
 
-${NAME}: ${MLX_LIB} ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${MLX_LDFLAGS} -o ${NAME}
+${NAME}: ${MLX_LIB} ${PRINTF_LIB} ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} ${MLX_LDFLAGS} ${PRINTF_LIB} -o ${NAME}
 
 ${MLX_LIB}:
 	${MAKE} -C ${MLX_DIR}
+
+${PRINTF_LIB}:
+	${MAKE} -C ${PRINTF_DIR}
 
 clean:
 	${RM} ${OBJS}

@@ -4,6 +4,11 @@
 ## 📋 Parsing de la carte
 
 - [x] Vérifier l'extension `.ber` du fichier de carte (`filename_is_correct()`)
+
+# TODO - so_long
+
+## 📋 Parsing de la carte
+- [x] Vérifier l'extension `.ber` du fichier de carte (`filename_is_correct()`)
 - [x] Lire et stocker la carte en mémoire (get_next_line intégré)
 - [x] Vérifier que la carte est rectangulaire (`is_rectangle()`)
 - [x] Stocker la carte en structure de données (2D array/liste)
@@ -20,20 +25,18 @@
   - [x] Le joueur peut atteindre la sortie
   - [x] Affichage debug de la map après flood fill pour valider le chemin
 
-
 ## 🎮 Gestion de la MiniLibX (MLX)
-
 - [x] Initialiser la connexion MLX
   - Utiliser `mlx_init()` pour obtenir un pointeur de connexion.
 - [x] Créer une fenêtre (ex: 1920x1080)
   - `mlx_new_window()` pour créer la fenêtre principale.
-  - [ ] Charger les textures/sprites nécessaires
-    - [ ] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
-    - [ ] Utiliser `mlx_xpm_file_to_image()` pour charger chaque image et récupérer un pointeur d'image.
-    - [ ] Stocker les pointeurs d'images dans une structure dédiée (ex: `t_sprites`).
-  - [ ] Afficher les images à l'écran
-    - [ ] Utiliser `mlx_put_image_to_window()` pour dessiner chaque sprite à la bonne position selon la carte.
-    - [ ] Parcourir la map et afficher le bon sprite pour chaque case.
+  - [x] Charger les textures/sprites nécessaires
+    - [x] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
+    - [x] Utiliser `mlx_xpm_file_to_image()` pour charger chaque image et récupérer un pointeur d'image.
+    - [x] Stocker les pointeurs d'images dans une structure dédiée (ex: `t_sprites`).
+  - [x] Afficher les images à l'écran
+    - [x] Utiliser `mlx_put_image_to_window()` pour dessiner chaque sprite à la bonne position selon la carte.
+    - [x] Parcourir la map et afficher le bon sprite pour chaque case.
   - [x] Gérer les hooks d'événements
     - [x] Fermer la fenêtre proprement (ESC et croix rouge) avec `mlx_hook()` et `mlx_destroy_window()`.
     - [x] Gérer les touches pour le déplacement du joueur (`mlx_key_hook()` ou `mlx_hook()` avec l'événement clavier).
@@ -41,129 +44,30 @@
     - [x] Détruire la fenêtre avec `mlx_destroy_window()`.
     - [x] Détruire chaque image chargée avec `mlx_destroy_image()` (image principale OK)
     - [x] Libérer la connexion MLX (free et destroy_display)
-  - [ ] Gérer les erreurs MLX
+  - [x] Gérer les erreurs MLX
     - [x] Vérifier le retour de chaque fonction MLX (pointeur NULL = erreur).
     - [x] Afficher un message d'erreur explicite et quitter proprement si une étape échoue.
 
-**Conseils pratiques MLX :**
-- Les images doivent être au format XPM (support natif MLX).
-- Attention à bien libérer chaque ressource MLX pour éviter les fuites mémoire.
-- Centraliser les pointeurs MLX (fenêtre, images, etc.) dans une structure principale (ex: `t_game`).
-- Tester le rendu avec différentes tailles de cartes et de sprites.
-
 ## 🖼️ Affichage graphique
-
 - [x] Définir la taille des tiles/sprites (TILE_SIZE dans le code)
 - [x] Créer un affichage basique couleur pour chaque type (pas encore de sprites XPM)
-- [ ] Créer ou récupérer les sprites XPM pour :
-  - [ ] Mur
-  - [ ] Sol
-  - [ ] Collectible
-  - [ ] Joueur (possiblement plusieurs directions)
-  - [ ] Sortie (fermée/ouverte optionnel)
-- [x] Implémenter le rendu de la carte à l'écran (draw_map OK)
-- [ ] Afficher le compteur de mouvements à l'écran
-- [x] Mettre en place le système de pixels (my_mlx_pixel_put)
+- [x] Créer ou récupérer les sprites XPM pour :
+  - [x] Mur
+  - [x] Sol
+  - [x] Collectible
+  - [x] Joueur (possiblement plusieurs directions)
+  # Todo List
 
-## 🕹️ Gameplay
-- [x] Gérer les inputs clavier (hook en place)
-- [x] Supporter les flèches (déjà géré, W/A/S/D à ajouter)
-- [x] Implémenter le mouvement du joueur (move_player)
-  - [x] Vérifier les collisions avec les murs
-  - [x] Incrémenter et afficher le compteur de mouvements (printf OK)
-  - [x] Afficher le nombre de mouvements dans le terminal
-- [ ] Gérer la collecte des items
-  - [x] Retirer le collectible de la carte (user_can_move décrémente collectible)
+  - [x] Parsing de la carte : toutes validations
+  - [x] Gestion MLX : fenêtre, sprites, hooks
+  - [x] Affichage graphique : rendu carte, sprites
+  - [x] Gameplay : déplacement joueur, collisions, compteur mouvements
+  - [ ] Gameplay : victoire et collecte complète
+  - [ ] Supporter W/A/S/D (flèches OK)
+  - [ ] Vérifier la norme (norminette)
+  - [x] Nettoyage mémoire (valgrind OK)
+  - [x] Makefile : all, clean, fclean, re, pas de relink
+  - [x] Tests avec cartes valides/invalides
+  - [ ] Bonus : animations, compteur mouvements à l'écran
+  - [ ] Bonus : ennemis patrouilleurs, textures direction
   - [x] Mettre à jour le compteur de collectibles
-- [ ] Gérer la condition de victoire
-  - [ ] Tous les collectibles sont ramassés
-  - [ ] Le joueur atteint la sortie
-  - [ ] Fermer le jeu proprement
-
-
-## 🛠️ Gestion des erreurs
-
-- [x] Afficher "Error\n" suivi d'un message explicite en cas de problème
-- [x] Gérer les cas d'erreur :
-  - [x] Fichier inexistant ou inaccessible
-  - [x] Carte invalide
-  - [x] Problème d'allocation mémoire
-  - [x] Échec d'initialisation MLX
-- [x] Libérer toute la mémoire allouée en cas d'erreur
-
-
-## 🧹 Nettoyage et normes
-
-- [ ] Vérifier la Norme (norminette)
-- [x] S'assurer qu'il n'y a pas de fuites mémoire (valgrind OK)
-- [x] Créer/Vérifier le Makefile avec les règles :
-  - [x] `all`
-  - [x] `clean`
-  - [x] `fclean`
-  - [x] `re`
-  - [x] Pas de relink
-- [x] Tester avec différentes cartes valides et invalides (dont collectibles inaccessibles)
-
-## 🎁 Bonus (optionnel)
-
-- [ ] Animations de sprites
-- [ ] Affichage du compteur de mouvements à l'écran (pas seulement terminal)
-- [ ] Ennemis patrouilleurs (perte si contact)
-- [ ] Gérer plusieurs textures pour le joueur selon la direction
-
-## 📝 Notes
-
-- Pense à la structure de tes données (structs pour la carte, le jeu, les sprites, etc.)
-- Garde ton code modulaire et bien organisé
-- Teste régulièrement avec des cartes de différentes tailles
-- N'oublie pas la gestion de la mémoire !
-
-## 🚀 Prochaines étapes prioritaires
-
-- [ ] Préparer les fichiers XPM pour chaque sprite (mur, sol, joueur, collectible, sortie...)
-- [ ] Créer une structure `t_sprites` pour centraliser les pointeurs d'images
-- [ ] Charger chaque sprite avec `mlx_xpm_file_to_image()` et vérifier les erreurs
-- [ ] Implémenter le rendu de la carte :
-  - [ ] Parcourir la map et afficher le bon sprite pour chaque case
-  - [ ] Définir la taille des tiles/sprites (ex : 32x32 px)
-  - [ ] Adapter la taille de la fenêtre à la carte
-- [ ] Gérer les déplacements du joueur :
-  - [ ] Supporter W/A/S/D et flèches
-  - [ ] Vérifier collisions (murs, collectibles, sortie)
-  - [ ] Mettre à jour la map et le compteur de mouvements
-- [ ] Afficher le compteur de mouvements à l'écran (bonus)
-- [ ] Gérer la collecte des items et la condition de victoire
-- [ ] Détruire chaque image chargée avec `mlx_destroy_image()` à la fermeture
-- [ ] Vérifier la norme (norminette) et l'absence de fuites mémoire (valgrind)
-
-## 🧑‍💻 Conseils pratiques
-
-- Centraliser tous les pointeurs MLX (fenêtre, images, etc.) dans une structure principale (`t_game`)
-- Toujours vérifier le retour des fonctions MLX (NULL = erreur)
-- Libérer chaque ressource MLX pour éviter les fuites mémoire
-- Modulariser le code : séparer parsing, rendu, gameplay, gestion mémoire
-- Tester avec des cartes de tailles et formes variées
-- Utiliser des messages d'erreur explicites et une sortie propre
-
-## 🎨 Idées d'amélioration graphique
-
-- Ajouter plusieurs textures pour le joueur selon la direction
-- Créer une animation simple pour les collectibles ou la sortie
-- Afficher le compteur de mouvements dans la fenêtre (bonus)
-- Adapter le rendu pour les grandes cartes (scrolling ou centrage)
-
-## 🏆 Bonus et extensions
-
-- Ajouter des ennemis patrouilleurs (perte si contact)
-- Gérer plusieurs niveaux/cartes
-- Système de menu de démarrage et écran de victoire/défaite
-- Effets sonores (si temps et envie)
-
-## 🧹 Nettoyage et validation finale
-
-- Vérifier la norme (norminette)
-- Tester avec valgrind (aucune fuite mémoire)
-- Vérifier le Makefile (règles all, clean, fclean, re, pas de relink)
-- Tester avec des cartes valides et invalides (collectibles inaccessibles, murs manquants, etc.)
-
----

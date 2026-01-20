@@ -57,20 +57,6 @@ int	check_map(t_map *map)
 	return (1);
 }
 
-t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos)
-{
-	t_game	*game;
-
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (NULL);
-	game->vars = *vars;
-	game->map = map;
-	game->player_pos = pos;
-	game->move_number = 0;
-	return (game);
-}
-
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -90,18 +76,6 @@ int	main(int argc, char **argv)
 			free_map_grid(map, map->height - 1);
 			return (ft_error("Error while init game\n"));
 		}
-		init_window(game);
-		if (!game->vars.mlx)
-		{
-			free_map_grid(map, map->height - 1);
-			free(game);
-			return (ft_error("Error while init window"));
-		}
-		load_sprites(game->vars.mlx, &game->sprites);
-		draw_map(game);
-		draw_player(game);
-		mlx_hook(game->vars.win, 2, 1L, key_press, game);
-		mlx_hook(game->vars.win, 17, 0, close_window, game);
-		mlx_loop(game->vars.mlx);
+		launch_game(game, map);
 	}
 }
