@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:19:22 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/20 00:38:15 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:05:28 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,25 @@ void	launch_game(t_game *game, t_map *map)
 	mlx_hook(game->vars.win, 2, 1L, key_press, game);
 	mlx_hook(game->vars.win, 17, 0, close_window, game);
 	mlx_loop(game->vars.mlx);
+}
+
+void	save_exit(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < game->map->height)
+	{
+		j = -1;
+		while (++j < game->map->width)
+		{
+			if (game->map->grid[i][j] == 'E')
+			{
+				game->exit_pos.height = i;
+				game->exit_pos.width = j;
+				return ;
+			}
+		}
+	}
 }

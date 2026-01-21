@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/20 00:37:36 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:38:26 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	show_movements(t_game *game)
 {
 	char	*num;
 
+	ft_printf("Move %d\n", game->move_number);
 	num = ft_itoa(game->move_number);
 	mlx_string_put(game->vars.mlx, game->vars.win, 50, 50, 0xFFFFFF, "Move :");
 	mlx_string_put(game->vars.mlx, game->vars.win, 100, 50, 0xFFFFFF, num);
@@ -54,15 +55,15 @@ void	move_player(t_game *game, int direction)
 		new_pos.height++;
 	if (user_can_move(game->map, new_pos))
 	{
-		exit = game->map->grid[new_pos.height][new_pos.width] == 'E';
 		game->map->grid[game->player_pos.height][game->player_pos.width] = '0';
 		game->map->grid[new_pos.height][new_pos.width] = 'P';
 		game->player_pos = new_pos;
 		draw_map(game);
 		draw_player(game);
+		exit = game->map->grid[new_pos.height][new_pos.width] == 'E';
 		game->move_number++;
 		show_movements(game);
-		if (exit)
+		if (exit && game->map->collectible == 0)
 			close_window(game);
 	}
 }

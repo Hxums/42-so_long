@@ -42,16 +42,19 @@ int	check_map(t_map *map)
 	if (!map_surrounded_by_wall(map))
 	{
 		free_map_grid(map, map->height - 1);
+		free(map);
 		return (ft_error("Map not surrounded by wall\n"));
 	}
 	if (!map_is_valid(map))
 	{
 		free_map_grid(map, map->height - 1);
+		free(map);
 		return (ft_error("Map not valid\n"));
 	}
 	if (!map_can_be_done(map))
 	{
 		free_map_grid(map, map->height - 1);
+		free(map);
 		return (ft_error("Map can't be completed\n"));
 	}
 	return (1);
@@ -74,8 +77,10 @@ int	main(int argc, char **argv)
 		if (!game)
 		{
 			free_map_grid(map, map->height - 1);
+			free(map);
 			return (ft_error("Error while init game\n"));
 		}
+		save_exit(game);
 		launch_game(game, map);
 	}
 }

@@ -55,16 +55,6 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
-enum e_tile_color
-{
-	COLOR_WALL		= 0x2E3440,
-	COLOR_FLOOR		= 0xECEFF4,
-	COLOR_PLAYER	= 0x5E81AC,
-	COLOR_EXIT		= 0xA3BE8C,
-	COLOR_COLLECT	= 0xEBCB8B,
-	COLOR_UNKNOWN	= 0xBF616A
-};
-
 typedef struct s_sprites
 {
 	void	*wall;
@@ -81,6 +71,7 @@ typedef struct s_game
 	t_pos		player_pos;
 	t_sprites	sprites;
 	int			move_number;
+	t_pos		exit_pos;
 }	t_game;
 
 int		filename_is_correct(char *str);
@@ -109,4 +100,5 @@ t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos);
 int		ft_error(char *str);
 void	launch_game(t_game *game, t_map *map);
 void	show_movements(t_game *game);
+void	save_exit(t_game *game);
 #endif

@@ -22,7 +22,6 @@ OBJS = ${SRC:.c=.o} ${GNL:.c=.o}
 CC      = cc
 RM      = rm -f
 CFLAGS  = -Wall -Wextra -Werror
-INCS	= -I ./includes/ -I ./minilibx-linux/ -I ./printf
 
 MLX_DIR	= ./minilibx-linux
 MLX_LIB	= ${MLX_DIR}/libmlx.a
@@ -31,6 +30,9 @@ MLX_LDFLAGS = -L${MLX_DIR} -lmlx -lXext -lX11 -lm -lz
 PRINTF_DIR = ./printf
 PRINTF_LIB = ${PRINTF_DIR}/libftprintf.a
 
+GNL_DIR = ./getNextLine
+
+INCS	= -I ./includes/ -I ${MLX_DIR} -I ${PRINTF_DIR} -I ${GNL_DIR}
 
 all: ${NAME}
 
@@ -49,6 +51,7 @@ ${PRINTF_LIB}:
 clean:
 	${RM} ${OBJS}
 	${MAKE} -C ${MLX_DIR} clean
+	${MAKE} -C ${PRINTF_DIR} clean
 
 fclean: clean
 	${RM} ${NAME}

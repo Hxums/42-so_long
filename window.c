@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/19 02:01:21 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:05:43 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ void	draw_map(t_game *game)
 		while (++j < game->map->width)
 		{
 			if (game->map->grid[i][j] == 'P')
-				img = game->sprites.floor;
+					img = game->sprites.floor;
 			else
 				img = get_sprite(game, game->map->grid[i][j]);
+			if (game->exit_pos.height == i && game->exit_pos.width == j)
+					img = game->sprites.exit;
 			mlx_put_image_to_window(game->vars.mlx, game->vars.win, img,
 				j * TILE_SIZE, i * TILE_SIZE);
 		}
@@ -57,6 +59,9 @@ void	draw_player(t_game *game)
 		game->sprites.player,
 		game->player_pos.width * TILE_SIZE,
 		game->player_pos.height * TILE_SIZE);
+	if (game->exit_pos.height == game->player_pos.height
+		&& game->exit_pos.width == game->player_pos.width)
+		game->map->grid[game->exit_pos.height][game->exit_pos.width] = 'E';
 }
 
 void	init_window(t_game *game)
@@ -69,6 +74,7 @@ void	init_window(t_game *game)
 			TILE_SIZE * game->map->height, "hcissoko so_long");
 	if (!game->vars.win)
 	{
+		mlx_destroy_display(game->vars.mlx);
 		free(game->vars.mlx);
 		return ;
 	}

@@ -6,24 +6,11 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 11:41:26 by hcissoko          #+#    #+#             */
-/*   Updated: 2025/11/24 18:37:06 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:51:30 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-
-• %p The void * pointer argument has to be printed in hexadecimal format.
-• %u Prints an unsigned decimal (base 10) number.
-• %x Prints a number in hexadecimal (base 16) lowercase format.
-• %X Prints a number in hexadecimal (base 16) uppercase format.
-*/
-
-/*
-printf("%x et  %x\n",12,(unsigned int)-12);
-printf("%x et  %x",12,UINT_MAX - 1 + 1);
-*/
 
 int	ft_printf(const char *str, ...)
 {
