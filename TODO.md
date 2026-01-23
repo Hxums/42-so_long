@@ -62,7 +62,7 @@
   - [x] Gestion MLX : fenêtre, sprites, hooks
   - [x] Affichage graphique : rendu carte, sprites
   - [x] Gameplay : déplacement joueur, collisions, compteur mouvements
-  - [ ] Gameplay : victoire et collecte complète
+  - [x] Gameplay : victoire et collecte complète
   - [ ] Supporter W/A/S/D (flèches OK)
   - [ ] Vérifier la norme (norminette)
   - [x] Nettoyage mémoire (valgrind OK)

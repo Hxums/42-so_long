@@ -1,17 +1,17 @@
 NAME = so_long
 
-SRC =	main.c \
-	checker.c \
-	map.c \
-	utils.c \
-	flood_fill.c \
-	mlx_utils.c \
-	window.c \
-	player.c \
-	sprites.c \
-	ft_itoa.c \
-	ft_putnbr.c \
-	game.c \
+SRC =	so-long/main.c \
+	so-long/checker.c \
+	so-long/map.c \
+	so-long/utils.c \
+	so-long/flood_fill.c \
+	so-long/mlx_utils.c \
+	so-long/window.c \
+	so-long/player.c \
+	so-long/sprites.c \
+	so-long/ft_itoa.c \
+	so-long/ft_putnbr.c \
+	so-long/game.c \
 
 GNL =	getNextLine/get_next_line_utils.c\
 		getNextLine/get_next_line.c\

@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/21 17:38:26 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/23 19:53:32 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	show_movements(t_game *game)
 
 int	close_window(t_game *game)
 {
+	if (game->map->collectible == 0)
+		printf("Game ended with %d moves\n", game->move_number);
 	mlx_destroy_image(game->vars.mlx, game->sprites.collectible);
 	mlx_destroy_image(game->vars.mlx, game->sprites.exit);
 	mlx_destroy_image(game->vars.mlx, game->sprites.floor);
