@@ -14,7 +14,8 @@
 
 int	ft_error(char *str)
 {
-	ft_printf("Error\n%s\n", str);
+	write(2, "Error\n", 6);
+	write(2, str, ft_strlen(str));
 	return (0);
 }
 
@@ -26,7 +27,7 @@ int	ft_check_file(char *filename)
 		return (ft_error("Filename not correct\n"));
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (ft_error("Error while opening the file\n"));
+		return (ft_error("Issue while opening the file\n"));
 	if (!is_rectangle(fd))
 	{
 		close(fd);
