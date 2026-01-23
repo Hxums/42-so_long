@@ -5,7 +5,6 @@ SRC =	main.c \
 	map.c \
 	utils.c \
 	flood_fill.c \
-	ft_grid_copy.c \
 	mlx_utils.c \
 	window.c \
 	player.c \
@@ -50,11 +49,14 @@ ${PRINTF_LIB}:
 
 clean:
 	${RM} ${OBJS}
+	${RM} getNextLine/*.o
 	${MAKE} -C ${MLX_DIR} clean
 	${MAKE} -C ${PRINTF_DIR} clean
 
 fclean: clean
 	${RM} ${NAME}
+	${MAKE} -C ${PRINTF_DIR} fclean
+
 
 re: fclean all
 

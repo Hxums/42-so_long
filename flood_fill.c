@@ -6,11 +6,33 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 08:09:23 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/19 23:45:35 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/23 19:10:29 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	**ft_grid_cpy(t_map *map)
+{
+	char	**grid;
+	int		i;
+
+	i = 0;
+	grid = malloc(sizeof(char *) * (map->height + 1));
+	if (!grid)
+		return (NULL);
+	while (i < map->height)
+	{
+		grid[i] = ft_strdup(map->grid[i]);
+		if (!grid[i])
+		{
+			ft_strsfree(grid, i - 1);
+			return (NULL);
+		}
+		i++;
+	}
+	return (grid);
+}
 
 t_pos	get_next_pos(t_pos pos, int direction)
 {
