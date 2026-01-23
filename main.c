@@ -14,7 +14,7 @@
 
 int	ft_error(char *str)
 {
-	write(2, str, ft_strlen(str));
+	ft_printf("Error\n%s\n", str);
 	return (0);
 }
 
@@ -83,4 +83,6 @@ int	main(int argc, char **argv)
 		save_exit(game);
 		launch_game(game, map);
 	}
+	else
+		ft_printf("Error");
 }
