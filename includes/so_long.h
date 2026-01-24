@@ -17,17 +17,14 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include <sys/time.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "mlx.h"
 
-# ifndef EXTENSION
-#  define EXTENSION ".ber"
-# endif
-
-# ifndef TILE_SIZE
-#  define TILE_SIZE 64
-# endif
+# define EXTENSION ".ber"
+# define TILE_SIZE 64
+# define NB_COLLECTIBLE_FRAMES 8
 
 typedef struct s_map
 {
@@ -60,18 +57,20 @@ typedef struct s_sprites
 	void	*wall;
 	void	*floor;
 	void	*player;
-	void	*collectible;
+	void	*collectibles[NB_COLLECTIBLE_FRAMES];
 	void	*exit;
 }	t_sprites;
 
 typedef struct s_game
 {
-	t_vars		vars;
-	t_map		*map;
-	t_pos		player_pos;
-	t_sprites	sprites;
-	int			move_number;
-	t_pos		exit_pos;
+	t_vars			vars;
+	t_map			*map;
+	t_pos			player_pos;
+	t_sprites		sprites;
+	int				move_number;
+	t_pos			exit_pos;
+	int				collectible_frame;
+	struct timeval	last_anim_time;
 }	t_game;
 
 int		filename_is_correct(char *str);
@@ -101,4 +100,6 @@ int		ft_error(char *str);
 void	launch_game(t_game *game, t_map *map);
 void	show_movements(t_game *game);
 void	save_exit(t_game *game);
+int		animate_collectibles(t_game *game);
+int expose_redraw(t_game *game);
 #endif

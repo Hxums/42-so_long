@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/21 19:05:43 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/24 12:49:25 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*get_sprite(t_game *game, char c)
 	else if (c == 'P')
 		return (game->sprites.player);
 	else if (c == 'C')
-		return (game->sprites.collectible);
+		return (game->sprites.collectibles[game->collectible_frame]);
 	else if (c == 'E')
 		return (game->sprites.exit);
 	else

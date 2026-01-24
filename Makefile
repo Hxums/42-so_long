@@ -12,6 +12,7 @@ SRC =	so-long/main.c \
 	so-long/ft_itoa.c \
 	so-long/ft_putnbr.c \
 	so-long/game.c \
+	so-long/animation.c \
 
 GNL =	getNextLine/get_next_line_utils.c\
 		getNextLine/get_next_line.c\

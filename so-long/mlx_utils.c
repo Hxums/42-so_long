@@ -6,28 +6,21 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/23 19:53:32 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/24 12:42:54 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	show_movements(t_game *game)
-{
-	char	*num;
-
-	ft_printf("Move %d\n", game->move_number);
-	num = ft_itoa(game->move_number);
-	mlx_string_put(game->vars.mlx, game->vars.win, 50, 50, 0xFFFFFF, "Move :");
-	mlx_string_put(game->vars.mlx, game->vars.win, 100, 50, 0xFFFFFF, num);
-	free(num);
-}
-
 int	close_window(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	if (game->map->collectible == 0)
 		printf("Game ended with %d moves\n", game->move_number);
-	mlx_destroy_image(game->vars.mlx, game->sprites.collectible);
+	while (i < NB_COLLECTIBLE_FRAMES)
+		mlx_destroy_image(game->vars.mlx, game->sprites.collectibles[i++]);
 	mlx_destroy_image(game->vars.mlx, game->sprites.exit);
 	mlx_destroy_image(game->vars.mlx, game->sprites.floor);
 	mlx_destroy_image(game->vars.mlx, game->sprites.player);
@@ -64,7 +57,7 @@ void	move_player(t_game *game, int direction)
 		draw_player(game);
 		exit = game->map->grid[new_pos.height][new_pos.width] == 'E';
 		game->move_number++;
-		show_movements(game);
+		ft_printf("Move %d\n", game->move_number);
 		if (exit && game->map->collectible == 0)
 			close_window(game);
 	}
