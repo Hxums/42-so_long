@@ -14,8 +14,8 @@
 
 int	ft_error(char *str)
 {
-	write(2, "Error\n", 6);
-	write(2, str, ft_strlen(str));
+	write(1, "Error\n", 6);
+	write(1, str, ft_strlen(str));
 	return (0);
 }
 
@@ -85,5 +85,5 @@ int	main(int argc, char **argv)
 		launch_game(game, map);
 	}
 	else
-		ft_printf("Error");
+		return (ft_error("1 argument is needed"));
 }

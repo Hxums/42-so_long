@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:30 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/21 16:10:15 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 01:59:28 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 int	filename_is_correct(char *str)
 {
-	int		size;
-	int		i;
+	int	size;
+	int	ext_len;
 
 	size = ft_strlen(str);
-	i = 0;
-	if (size < 5)
+	ext_len = ft_strlen(EXTENSION);
+
+	if (size < ext_len || str[0] == '.' || str[size - ext_len - 1] == '/')
 		return (0);
-	while (EXTENSION[i] && str[size - ft_strlen(EXTENSION) + i])
-	{
-		if (EXTENSION[i] != str[size - ft_strlen(EXTENSION) + i])
-			return (0);
-		i++;
-	}
-	return (EXTENSION[i] == str[size - ft_strlen(EXTENSION) + i]);
+	if (ft_strncmp(str + size - ext_len, EXTENSION, ext_len) != 0)
+		return (0);
+	if (str[size - ext_len - 1] == '.')
+		return (0);
+	return (1);
 }
 
 int	is_rectangle(int fd)

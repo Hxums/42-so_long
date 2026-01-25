@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 01:55:11 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/14 02:12:58 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 01:38:12 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void	ft_strsfree(char **strs, int i)
 		free(strs[i]);
 	}
 	free(strs);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{	
+	size_t	i;
+
+	i = 0;
+	while (i < n && s2[i] == s1[i] && s2[i] && s1[i])
+	{
+		i++;
+	}
+	if (i == n)
+		return (0);
+	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }
 
 t_pos	get_player_pos(t_map *map)

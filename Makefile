@@ -1,18 +1,18 @@
 NAME = so_long
 
-SRC =	so-long/main.c \
-	so-long/checker.c \
-	so-long/map.c \
-	so-long/utils.c \
-	so-long/flood_fill.c \
-	so-long/mlx_utils.c \
-	so-long/window.c \
-	so-long/player.c \
-	so-long/sprites.c \
-	so-long/ft_itoa.c \
-	so-long/ft_putnbr.c \
-	so-long/game.c \
-	so-long/animation.c \
+SRC =	src/main.c \
+	src/checker.c \
+	src/map.c \
+	src/utils.c \
+	src/flood_fill.c \
+	src/mlx_utils.c \
+	src/window.c \
+	src/player.c \
+	src/sprites.c \
+	src/ft_itoa.c \
+	src/ft_putnbr.c \
+	src/game.c \
+	src/animation.c \
 
 GNL =	getNextLine/get_next_line_utils.c\
 		getNextLine/get_next_line.c\

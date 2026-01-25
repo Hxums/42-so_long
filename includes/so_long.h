@@ -73,6 +73,7 @@ typedef struct s_game
 	struct timeval	last_anim_time;
 }	t_game;
 
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		filename_is_correct(char *str);
 int		is_rectangle(int fd);
 char	*ft_itoa(int n);
