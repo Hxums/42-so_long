@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:30 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 01:59:28 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:42:23 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	filename_is_correct(char *str)
 
 	size = ft_strlen(str);
 	ext_len = ft_strlen(EXTENSION);
-
 	if (size < ext_len || str[0] == '.' || str[size - ext_len - 1] == '/')
 		return (0);
 	if (ft_strncmp(str + size - ext_len, EXTENSION, ext_len) != 0)

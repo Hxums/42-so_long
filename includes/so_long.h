@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-#include <sys/time.h>
+# include <sys/time.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "mlx.h"
@@ -103,5 +103,5 @@ void	launch_game(t_game *game, t_map *map);
 void	show_movements(t_game *game);
 void	save_exit(t_game *game);
 int		animate_collectibles(t_game *game);
-int expose_redraw(t_game *game);
+int 	expose_redraw(t_game *game);
 #endif

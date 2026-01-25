@@ -6,12 +6,11 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 09:29:47 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 12:44:35 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 14:42:31 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	load_collectible(void *mlx, t_sprites *sprites)
 {
