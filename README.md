@@ -1,9 +1,45 @@
+*This project has been created as part of the 42 curriculum by hcissoko.*
 
-#Ressources
-https://www.freecodecamp.org/news/flood-fill-algorithm-explained/
-https://en.wikipedia.org/wiki/Flood_fill
+## Description
+This project is about creating a small 2D game where the player must collect all items and reach the exit on a map defined by a `.ber` file. The graphical rendering is handled by the MiniLibX library.
 
-To read from a file to a image object, you need either the XMP or PNG format. In order to read we can call the functions mlx_xpm_file_to_image and mlx_png_file_to_image accordingly. Do mind that mlx_png_file_to_image currently leaks memory. Both functions accept exactly the same parameters and their usage is identical.
+## Features
+- Map parsing and validation
+- Graphical display with MiniLibX
+- Player movement (arrows)
+- Collision and collection management
+- Move counter
+- Memory cleanup (valgrind OK)
 
-https://craftpix.net/freebies/free-top-down-hunt-animals-pixel-sprite-pack/
-https://kenney.nl/assets/sokoban
+## Compilation
+Use the provided Makefile:
+
+```sh
+make
+```
+
+To clean object files:
+
+```sh
+make clean
+make fclean
+```
+
+## Run the game
+
+```sh
+./so_long map.ber
+```
+
+## Map format
+- Text file with `.ber` extension
+- Valid characters: `0` (floor), `1` (wall), `C` (collectible), `E` (exit), `P` (player)
+- The map must be rectangular, surrounded by walls, and contain only one player, one exit, and at least one collectible
+
+## Dependencies
+- MiniLibX (already included in the `minilibx-linux` folder)
+- X11, Xext, BSD (Linux)
+
+## Bonus
+- Sprite animations
+- On-screen move counter
