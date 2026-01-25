@@ -56,7 +56,7 @@ typedef struct s_sprites
 {
 	void	*wall;
 	void	*floor;
-	void	*player;
+	void	*player[4];
 	void	*collectibles[NB_COLLECTIBLE_FRAMES];
 	void	*exit;
 }	t_sprites;
@@ -70,6 +70,7 @@ typedef struct s_game
 	int				move_number;
 	t_pos			exit_pos;
 	int				collectible_frame;
+	int				player_direction;
 	struct timeval	last_anim_time;
 }	t_game;
 

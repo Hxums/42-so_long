@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:07 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/21 15:46:54 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 13:03:28 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	fill_map(int fd, t_map *map)
 	int	i;
 	int	len;
 
-	len = map->width;
 	i = 0;
 	while (i < map->height)
 	{
@@ -64,6 +63,7 @@ int	fill_map(int fd, t_map *map)
 			free_map_grid(map, i - 1);
 			return (0);
 		}
+		len = ft_strlen(map->grid[i]);
 		if (map->grid[i][len - 1] == '\n')
 			map->grid[i][len - 1] = 0;
 		i++;

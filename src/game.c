@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 00:19:22 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/24 13:48:01 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 12:38:46 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos)
 	game->player_pos = pos;
 	game->move_number = 0;
 	game->collectible_frame = 0;
+	game->player_direction = 4;
 	while (i < NB_COLLECTIBLE_FRAMES)
 		game->sprites.collectibles[i++] = NULL;
 	return (game);

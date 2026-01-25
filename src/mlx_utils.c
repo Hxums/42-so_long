@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 08:01:57 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/24 12:42:54 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 12:45:01 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->vars.mlx, game->sprites.collectibles[i++]);
 	mlx_destroy_image(game->vars.mlx, game->sprites.exit);
 	mlx_destroy_image(game->vars.mlx, game->sprites.floor);
-	mlx_destroy_image(game->vars.mlx, game->sprites.player);
+	i = 0;
+	while (i < 4)
+		mlx_destroy_image(game->vars.mlx, game->sprites.player[i++]);
 	mlx_destroy_image(game->vars.mlx, game->sprites.wall);
 	mlx_destroy_window(game->vars.mlx, game->vars.win);
 	mlx_destroy_display(game->vars.mlx);
@@ -67,7 +69,11 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 		close_window(game);
-	if (119 <= keycode && keycode <= 65364)
+	if (65361 <= keycode && keycode <= 65364)
+	{
+		game->player_direction = keycode - 65360;
 		move_player(game, keycode - 65360);
+		show_movements(game);
+	}
 	return (0);
 }

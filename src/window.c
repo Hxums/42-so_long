@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/24 12:49:25 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/25 12:41:51 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*get_sprite(t_game *game, char c)
 		return (game->sprites.wall);
 	else if (c == '0')
 		return (game->sprites.floor);
-	else if (c == 'P')
-		return (game->sprites.player);
 	else if (c == 'C')
 		return (game->sprites.collectibles[game->collectible_frame]);
 	else if (c == 'E')
@@ -56,7 +54,7 @@ void	draw_map(t_game *game)
 void	draw_player(t_game *game)
 {
 	mlx_put_image_to_window(game->vars.mlx, game->vars.win,
-		game->sprites.player,
+		game->sprites.player[game->player_direction - 1],
 		game->player_pos.width * TILE_SIZE,
 		game->player_pos.height * TILE_SIZE);
 	if (game->exit_pos.height == game->player_pos.height
