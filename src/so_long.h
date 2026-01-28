@@ -103,4 +103,7 @@ void	show_movements(t_game *game);
 void	save_exit(t_game *game);
 int		animate_collectibles(t_game *game);
 int		expose_redraw(t_game *game);
+int		get_line_len(char *line);
+void	empty_fd(int fd);
+
 #endif

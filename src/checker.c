@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 00:12:30 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 14:42:23 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/28 22:47:09 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,16 @@ int	is_rectangle(int fd)
 	if (!line)
 		return (0);
 	i = 1;
-	line_len = ft_strlen(line);
-	if (line[line_len - 1] == '\n')
-		line_len--;
+	line_len = get_line_len(line);
 	while (line)
 	{
-		current_len = ft_strlen(line);
-		if (line[current_len - 1] == '\n')
-			current_len--;
+		current_len = get_line_len(line);
 		free(line);
 		if (line_len != current_len)
+		{
+			empty_fd(fd);
 			return (0);
+		}
 		line = get_next_line(fd);
 		i++;
 	}

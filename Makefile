@@ -31,7 +31,7 @@ PRINTF_LIB = ${PRINTF_DIR}/libftprintf.a
 
 GNL_DIR = ./getNextLine
 
-INCS	= -I ./includes/ -I ${MLX_DIR} -I ${PRINTF_DIR} -I ${GNL_DIR}
+INCS	= -I ${MLX_DIR} -I ${PRINTF_DIR} -I ${GNL_DIR}
 
 all: ${NAME}
 

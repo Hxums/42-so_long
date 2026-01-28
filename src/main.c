@@ -50,7 +50,7 @@ int	check_map(t_map *map)
 	{
 		free_map_grid(map, map->height - 1);
 		free(map);
-		return (ft_error("Map not valid\n"));
+		return (ft_error("Map not valid\nNeed 1 P, 1 E and at least 1 C\n"));
 	}
 	if (!map_can_be_done(map))
 	{

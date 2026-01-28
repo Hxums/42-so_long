@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 01:55:11 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 01:38:12 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/28 22:48:20 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,26 @@ t_pos	get_player_pos(t_map *map)
 		}
 	}
 	return (position);
+}
+
+int	get_line_len(char *line)
+{
+	size_t	current_len;
+
+	current_len = ft_strlen(line);
+	if (line[current_len - 1] == '\n')
+		current_len--;
+	return (current_len);
+}
+
+void	empty_fd(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
 }
