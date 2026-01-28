@@ -102,5 +102,5 @@ void	launch_game(t_game *game, t_map *map);
 void	show_movements(t_game *game);
 void	save_exit(t_game *game);
 int		animate_collectibles(t_game *game);
-int 	expose_redraw(t_game *game);
+int		expose_redraw(t_game *game);
 #endif

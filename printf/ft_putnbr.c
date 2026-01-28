@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 16:39:24 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/28 20:39:38 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/28 20:58:57 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	ft_putnbr(long nb)
 		write(1, "-", 1);
 		len++;
 	}
-	if (nb < 0)
-		nb = -nb;
+	x = nb;
+	if (x < 0)
+		x = -x;
 	if (x / 10 > 0)
 	{
 		len += ft_putnbr(x / 10);

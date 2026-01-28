@@ -10,7 +10,6 @@ SRC =	src/main.c \
 	src/player.c \
 	src/sprites.c \
 	src/ft_itoa.c \
-	src/ft_putnbr.c \
 	src/game.c \
 	src/animation.c \
 
