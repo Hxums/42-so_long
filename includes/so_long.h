@@ -96,7 +96,6 @@ int		close_window(t_game *game);
 void	load_sprites(void *mlx, t_sprites *sprites);
 t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos);
 void	launch_game(t_game *game, t_map *map);
-int		ft_putnbr(long nb);
 t_game	*init_game_struct(t_vars *vars, t_map *map, t_pos pos);
 int		ft_error(char *str);
 void	launch_game(t_game *game, t_map *map);
