@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 12:32:16 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 12:29:05 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/01/31 19:44:27 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ void	show_movements(t_game *game)
 	if (game->move_number == 0)
 		return ;
 	num = ft_itoa(game->move_number);
-	mlx_string_put(game->vars.mlx, game->vars.win, 50, 50, 0xFFFFFF, "Move :");
-	mlx_string_put(game->vars.mlx, game->vars.win, 100, 50, 0xFFFFFF, num);
-	free(num);
+	if (num)
+	{
+		mlx_string_put(game->vars.mlx, game->vars.win, 50, 50, 0xFFFFFF,
+			"Move :");
+		mlx_string_put(game->vars.mlx, game->vars.win, 100, 50, 0xFFFFFF, num);
+		free(num);
+	}
 }
 
 int	animate_collectibles(t_game *game)

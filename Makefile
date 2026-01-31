@@ -51,12 +51,10 @@ clean:
 	${RM} ${OBJS}
 	${RM} getNextLine/*.o
 	${MAKE} -C ${MLX_DIR} clean
-	${MAKE} -C ${PRINTF_DIR} clean
+	${MAKE} -C ${PRINTF_DIR} fclean
 
 fclean: clean
 	${RM} ${NAME}
-	${MAKE} -C ${PRINTF_DIR} fclean
-
 
 re: fclean all
 
