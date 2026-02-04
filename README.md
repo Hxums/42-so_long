@@ -38,7 +38,7 @@ make fclean
 
 ## Dependencies
 - MiniLibX (already included in the `minilibx-linux` folder)
-- X11, Xext, BSD (Linux)
+- X11 (Linux)
 
 ## Bonus
 - Sprite animations
