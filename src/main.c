@@ -33,6 +33,7 @@ int	ft_check_file(char *filename)
 		close(fd);
 		return (ft_error("Map is not rectangle\n"));
 	}
+	close(fd);
 	return (1);
 }
 
