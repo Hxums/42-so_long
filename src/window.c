@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 18:44:40 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/25 12:41:51 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/02/04 02:43:22 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	draw_map(t_game *game)
 		while (++j < game->map->width)
 		{
 			if (game->map->grid[i][j] == 'P')
-					img = game->sprites.floor;
+				img = game->sprites.floor;
 			else
 				img = get_sprite(game, game->map->grid[i][j]);
 			if (game->exit_pos.height == i && game->exit_pos.width == j)
-					img = game->sprites.exit;
+				img = game->sprites.exit;
 			mlx_put_image_to_window(game->vars.mlx, game->vars.win, img,
 				j * TILE_SIZE, i * TILE_SIZE);
 		}

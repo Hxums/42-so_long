@@ -6,7 +6,7 @@
 /*   By: hcissoko <hcissoko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 01:55:11 by hcissoko          #+#    #+#             */
-/*   Updated: 2026/01/28 22:48:20 by hcissoko         ###   ########.fr       */
+/*   Updated: 2026/02/04 02:43:08 by hcissoko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_strsfree(char **strs, int i)
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{	
+{
 	size_t	i;
 
 	i = 0;
